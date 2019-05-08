@@ -14,14 +14,15 @@ namespace ClientDNS
         public string url = "www.google.com";
         public byte[] message;
         IPEndPoint point = new IPEndPoint(IPAddress.Parse("8.8.8.8"), 53);
-        private Byte[] receiveBytes;
+        private Byte[] AnswersBytes;
 
         public DNS(DnsQuery query)
         {
             message = query.GetBytes();
             Connect(point);
             Send(message);
-            Receive();
+            AnswersBytes = Receive();
+
         }
 
         public void Connect(IPEndPoint point)
@@ -30,15 +31,20 @@ namespace ClientDNS
             Console.WriteLine("Connection established");
         }
 
-        public void Receive()
+        public byte[] Receive()
         {
-            byte[] array = _socket.Receive(ref point);
-            Console.WriteLine(Encoding.ASCII.GetString(array));
+            return _socket.Receive(ref point);
+           
         }
 
         private void Send(byte[] message)
         {
             _socket.Send(message, message.Length);
+        }
+
+        public void Write()
+        {
+            
         }
     }
 }

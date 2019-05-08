@@ -9,7 +9,7 @@ namespace ClientDNS
     public class DnsQuery
     {
         private string name;
-        
+        private byte[] array;
         private short id;
         private Flags flags;
         private short questions;
@@ -32,7 +32,7 @@ namespace ClientDNS
 
         public DnsQuery(byte[] array)
         {
-
+            this.array = array;
         }
 
         public byte[] GetBytes()
