@@ -7,7 +7,7 @@ namespace ClientDNS
     {
         static void Main(string[] args)
         {
-            DNS client = new DNS(new DnsQuery("www.google.com", Flags.Response, id: 0x00003245));
+            DNS client = new DNS(new DnsQuery("vortex.data.microsoft.com"));
        }
     }
 }

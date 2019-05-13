@@ -8,11 +8,23 @@ namespace ClientDNS
 {
     public class ReponseQuery
     {
-        private byte[] receviedBytes;
+        public byte[] receviedBytes;
+        public string name;
+        public int nameLength;
+        public int labelsCount;
+        public QueryType type;
+        public QueryClass clas;
+        public int skiplength;
 
         public ReponseQuery(byte[] receviedBytes)
-        {
+        {           
             this.receviedBytes = receviedBytes;
+            name = GetName();
+            nameLength = GetNameLength();
+            labelsCount = GetLabelsCount();
+            type = GetQueryType();
+            clas = GetQueryClass();
+            skiplength = GetNameLength() + 6;
         }
 
         public string GetName()

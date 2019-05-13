@@ -7,11 +7,25 @@ namespace ClientDNS
 {
     public class ReponseDNS
     {
-        private byte[] receviedBytes;
+        public byte[] receviedBytes;
+        private short id;
+        private Flags flags;
+        private short questions;
+        private short answersRRs;
+        private short authorityRRs;
+        private short additionalRRs;
+
 
         public ReponseDNS(byte[] receviedBytes)
         {
+            Array.Resize(ref receviedBytes, 12);
             this.receviedBytes = receviedBytes;
+            id = GetId();
+            flags = GetFlags();
+            questions = GetQuestions();
+            answersRRs = GetAnswersCount();
+            authorityRRs = GetAuthorityRRs();
+            additionalRRs = GetAdditionalRRS();
         }
 
         public short GetId()

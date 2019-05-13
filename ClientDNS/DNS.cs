@@ -11,10 +11,10 @@ namespace ClientDNS
     public class DNS
     {
         private UdpClient _socket = new UdpClient();
-        public string url = "www.google.com";
-        public byte[] message;
+        private byte[] message;
         IPEndPoint point = new IPEndPoint(IPAddress.Parse("8.8.8.8"), 53);
         private Byte[] AnswersBytes;
+        private string ip;
 
         public DNS(DnsQuery query)
         {
@@ -22,7 +22,14 @@ namespace ClientDNS
             Connect(point);
             Send(message);
             AnswersBytes = Receive();
+           WriteAnswer();
 
+        }
+
+        private void WriteAnswer()
+        {
+            var b = new Answer(AnswersBytes);
+            Console.Read();
         }
 
         public void Connect(IPEndPoint point)
@@ -42,9 +49,6 @@ namespace ClientDNS
             _socket.Send(message, message.Length);
         }
 
-        public void Write()
-        {
-            
-        }
+
     }
 }
