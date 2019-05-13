@@ -1,12 +1,22 @@
 ﻿using System;
 
 [Flags]
-public enum Flags : short
+public enum Flags : ushort
 {
-    Query = 0x00,
-    Response = 0x01,
-    OpCode = 0x02,
-    Truncated = 0x04,
-    Recursion = 0x08,
-    Reserved = 0x16,
+    None = 0,
+    FormatError = 1,
+    ServerFailture = 2,
+    NoSuchName = 3,
+    NameError = 4,
+    NotImplemented = 8,
+    Refused = 9,
+    NonAuthenticatedData = 16,
+    AnswerAuthenticated = 32,
+    RecursionAvailable = 64,
+    RecursionDesired = 256,
+    Truncated = 512,
+    Authoritative = 1024,
+    InverseQuerry = 2048,
+    Response = 32786,
+
 }

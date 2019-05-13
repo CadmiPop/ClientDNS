@@ -22,7 +22,7 @@ namespace ClientDNS
         {
             this.id = id ?? (short)new Random().Next(short.MaxValue);
             this.name = name;
-            query = new Query(name,QueryType.IQUERY,QueryClass.INTERNET);
+            query = new Query(name);
             this.flags = flags;
             questions = 1;
             answerRRs = 0;

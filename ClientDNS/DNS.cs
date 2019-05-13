@@ -22,13 +22,13 @@ namespace ClientDNS
             Connect(point);
             Send(message);
             AnswersBytes = Receive();
-           WriteAnswer();
+            WriteAnswer();
 
         }
 
         private void WriteAnswer()
         {
-            var b = new Answer(AnswersBytes);
+            var b = new Reponse(AnswersBytes);
             Console.Read();
         }
 

@@ -50,22 +50,22 @@ namespace ClientDNSFacts
             //Assert.Equal(expected, actual);
         }
 
-        [Fact]
-        public void TestAnswer()
-        {
-            var array = new ReponseAnswer(new byte[]
-            {               
-                0xc0, 0x0c, 0x00, 0x01, 0x00, 0x01, 0x00, 0x00, 0x01, 0x0c, 0x00, 0x04, 0xac, 0xd9, 0x14, 0x04
-            });
+        //[Fact]
+        //public void TestAnswer()
+        //{
+        //    var array = new ReponseAnswer(new byte[]
+        //    {               
+        //        0xc0, 0x0c, 0x00, 0x01, 0x00, 0x01, 0x00, 0x00, 0x01, 0x0c, 0x00, 0x04, 0xac, 0xd9, 0x14, 0x04
+        //    });
 
-            var name = array.GetAnswerName();
-            var querytype = array.GetQueryType();
-            var queryClass = array.GetQueryClass();
-            var timetolive = array.GetTimeToLive();
-            var dataLength = array.GetDataLength();
-            //var ip = array.GetIp();
-            //Assert.Equal(expected, actual);
-        }
+        //    var name = array.GetAnswerName();
+        //    var querytype = array.GetQueryType();
+        //    var queryClass = array.GetQueryClass();
+        //    var timetolive = array.GetTimeToLive();
+        //    var dataLength = array.GetDataLength();
+        //    //var ip = array.GetIp();
+        //    //Assert.Equal(expected, actual);
+        //}
 
         [Fact]
         public void TestAnswer2()
@@ -77,7 +77,7 @@ namespace ClientDNSFacts
                 0xc0, 0x0c, 0x00, 0x01, 0x00, 0x01, 0x00, 0x00, 0x01, 0x0c, 0x00, 0x04, 0xac, 0xd9, 0x14, 0x04
             };
 
-            var a = new Answer(array);
+            var a = new Reponse(array);
             //Assert.Equal(expected, actual);
         }
 
