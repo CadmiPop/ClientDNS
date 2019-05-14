@@ -19,11 +19,11 @@ namespace ClientDNS
 
         private byte[] nameByte= new byte[]{};
 
-        public Query(string name, QueryType type = QueryType.CNAME, QueryClass Class = QueryClass.INTERNET)
+        public Query(string name)
         {
             this.name = name;
-            this.type = type;
-            this.Class = Class;
+            this.type = QueryType.A;
+            this.Class = QueryClass.INTERNET;
         }
 
         public byte[] GetBytes()

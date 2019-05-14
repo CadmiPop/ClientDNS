@@ -18,12 +18,12 @@ namespace ClientDNS
         private short aditionalRRS;
         private Query query;
 
-        public DnsQuery(string name, Flags flags = Flags.Response, short? id = null)
+        public DnsQuery(string name, short? id = null)
         {
             this.id = id ?? (short)new Random().Next(short.MaxValue);
             this.name = name;
             query = new Query(name);
-            this.flags = flags;
+            this.flags = Flags.RecursionDesired;
             questions = 1;
             answerRRs = 0;
             authorityRRS = 0;
@@ -40,7 +40,7 @@ namespace ClientDNS
             var array = new byte[] { };
             return array
                 .Concat(ConvertToByte(id))
-                .Concat(ConvertToByte((short)flags).Reverse())
+                .Concat(ConvertToByteU((ushort)flags))
                 .Concat(ConvertToByte(questions))
                 .Concat(ConvertToByte(answerRRs))
                 .Concat(ConvertToByte(authorityRRS))
@@ -50,6 +50,11 @@ namespace ClientDNS
         }
 
         private byte[] ConvertToByte(short value)
+        {
+            return BitConverter.GetBytes(value).Reverse().ToArray();
+        }
+
+        private byte[] ConvertToByteU(ushort value)
         {
             return BitConverter.GetBytes(value).Reverse().ToArray();
         }
