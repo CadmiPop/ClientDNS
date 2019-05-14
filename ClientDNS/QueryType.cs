@@ -1,9 +1,13 @@
 ﻿public enum QueryType : short
 {
-    QUERY = 0x00,
-    IQUERY = 0x01,
-    STATUS = 0x02,
-    UNKNOWN = 0x03,
-    NOTIFY = 0x04,
-    UPDATE = 0x05,
+    A = 0x0001,
+    NS = 0x0002,
+    CNAME = 0x0005,
+    SOA = 0x0006,
+    PTR = 0x000c,
+    MX = 0x000f,
+    TXT = 0x0010,
+    AAAA = 0x001c,
+    SRV = 0x0021,
+    CERT = 0x0025
 }

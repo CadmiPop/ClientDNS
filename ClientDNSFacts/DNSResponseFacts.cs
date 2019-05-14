@@ -95,9 +95,8 @@ namespace ClientDNSFacts
                 0x01, 0x00, 0x01, 0x00, 0x00, 0x00, 0xce, 0x00, 0x04, 0x28, 0x4d, 0xe2, 0xfa
             };
 
-            var a = new ReponseAnswer(array);
-            a.GetAnswer();
-            a.GetIp();
+            var b = new Reponse(array);
+
             //Assert.Equal(expected, actual);
         }
     }

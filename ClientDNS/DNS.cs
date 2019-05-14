@@ -10,11 +10,11 @@ namespace ClientDNS
 {
     public class DNS
     {
-        private UdpClient _socket = new UdpClient();
+        private UdpClient _socket = new UdpClient(53);
         private byte[] message;
-        IPEndPoint point = new IPEndPoint(IPAddress.Parse("8.8.8.8"), 53);
+        IPEndPoint point = new IPEndPoint(IPAddress.Parse("1.1.1.1"), 53);
         private Byte[] AnswersBytes;
-        private string ip;
+
 
         public DNS(DnsQuery query)
         {
@@ -23,25 +23,23 @@ namespace ClientDNS
             Send(message);
             AnswersBytes = Receive();
             WriteAnswer();
-
         }
 
         private void WriteAnswer()
         {
             var b = new Reponse(AnswersBytes);
+            b.Getip(b.answers);
             Console.Read();
         }
 
         public void Connect(IPEndPoint point)
         {
             _socket.Connect(point);
-            Console.WriteLine("Connection established");
         }
 
         public byte[] Receive()
         {
-            return _socket.Receive(ref point);
-           
+            return _socket.Receive(ref point);           
         }
 
         private void Send(byte[] message)

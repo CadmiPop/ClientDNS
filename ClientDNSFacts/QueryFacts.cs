@@ -11,7 +11,7 @@ namespace ClientDNSFacts
         [Fact]
         public void Test1()
         {
-            var query = new Query("www.google.com", QueryType.IQUERY , QueryClass.INTERNET);
+            var query = new Query("www.google.com");
 
             var actual = query.GetBytes();
 
