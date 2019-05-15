@@ -44,11 +44,11 @@ namespace ClientDNS
         {
             if (GetQueryType() == QueryType.CNAME)
                 return "CNAME";
-            char separator = '.';
+
             return receivedBytes.Skip(12)
                 .Take(GetDataLength())
                 .Select(s => s.ToString())
-                .Aggregate((result, item) => result + separator + item);
+                .Aggregate((result, item) => result + '.' + item);
         }
     }
 }

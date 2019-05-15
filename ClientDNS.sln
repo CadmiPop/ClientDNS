@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientDNS", "ClientDNS\ClientDNS.csproj", "{A02771E5-355C-4A6E-94C5-215560968C60}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientDNSFacts", "ClientDNSFacts\ClientDNSFacts.csproj", "{B8A3828C-E376-4DEC-A42D-E514E890049A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientDNSFacts", "ClientDNSFacts\ClientDNSFacts.csproj", "{B8A3828C-E376-4DEC-A42D-E514E890049A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerDNS", "ServerDNS\ServerDNS.csproj", "{BDEF475B-09B2-42A2-B20A-4B49A25AA772}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{B8A3828C-E376-4DEC-A42D-E514E890049A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8A3828C-E376-4DEC-A42D-E514E890049A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8A3828C-E376-4DEC-A42D-E514E890049A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDEF475B-09B2-42A2-B20A-4B49A25AA772}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDEF475B-09B2-42A2-B20A-4B49A25AA772}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDEF475B-09B2-42A2-B20A-4B49A25AA772}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDEF475B-09B2-42A2-B20A-4B49A25AA772}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
