@@ -22,10 +22,8 @@ namespace ClientDNS
             Connect(point);
             Send(message);
             Console.WriteLine("this message was sent" + Encoding.ASCII.GetString(message));
-            
             AnswersBytes = Receive();
-            Console.WriteLine("this message was received" + Encoding.ASCII.GetString(AnswersBytes));
-            //WriteAnswer();
+            WriteAnswer();
         }
 
         private void WriteAnswer()

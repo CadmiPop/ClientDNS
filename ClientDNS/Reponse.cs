@@ -7,7 +7,7 @@ namespace ClientDNS
 {
     public class Reponse
     {
-        private byte[] answerBytes;
+        public byte[] answerBytes;
         private ReponseDNS head;
         private ReponseQuery query;
         public List<Answer> answers;

@@ -8,7 +8,6 @@ namespace ClientDNS
 {
     public class Answers
     {
-
         public IEnumerable<byte> receviedBytes;
 
         public List<Answer> answers = new List<Answer>();

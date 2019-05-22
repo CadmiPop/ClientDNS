@@ -8,11 +8,28 @@ namespace ClientDNS
 {
     public class Answer
     {
-        private byte[] receivedBytes;
+        public byte[] receivedBytes;
+        public byte[] ipAddress;
 
         public Answer(byte[] receivedBytes)
         {
             this.receivedBytes = receivedBytes;
+        }
+
+        public Answer(byte[] receivedBytes, byte[] ipAddress)
+        {
+            this.receivedBytes = receivedBytes;
+            this.ipAddress = ipAddress;
+        }
+
+        public Answer()
+        {
+
+        }
+
+        public byte[] GetBytesHeader()
+        {
+            return new byte[] { 192, 12, 0, 1, 0, 1, 0, 0, 1, 0, 0, 4 };
         }
 
         public IEnumerable<byte> GetAnswerName()

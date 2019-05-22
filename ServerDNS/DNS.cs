@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using ClientDNS;
 
 namespace ServerDNS
 {
@@ -10,44 +12,73 @@ namespace ServerDNS
     {
         private UdpClient _socket = new UdpClient(53);
         private byte[] message;
-        private byte[] dMessage = new byte[] {5,5,6,6};
-        
-        private List<Tuple<string, string>> nameIp =  new List<Tuple<string, string>>(){};
+        private byte[] answerBytes;
 
-        IPEndPoint groupEP = new IPEndPoint(IPAddress.Any, 53);
+        IPEndPoint groupEP = new IPEndPoint(IPAddress.Any, 50);
 
         public DNS()
         {
             while (true)
             {
                 message = Receive();
-                Console.WriteLine(Encoding.ASCII.GetString(message));
-                Send(message);
-                Console.WriteLine("this message was sent" + Encoding.ASCII.GetString(message));
+                var query = new DnsQuery(message).GetBytes();
+                var hostname = new DnsQuery(query).GetName();
+                byte[] responsePacket;
+
+                Console.WriteLine(hostname);
+                if (ItContains(hostname))
+                    responsePacket = query.Concat(answerBytes).ToArray();
+                else
+                    responsePacket = SendRequestToAnotherServer();
+
+                Send(responsePacket);
             }
+        }
+
+        private byte[] SendRequestToAnotherServer()
+        {
+            var endpoint = new IPEndPoint(IPAddress.Parse("8.8.8.8"), 53);
+            _socket.Send(message, message.Length, endpoint);
+            return _socket.Receive( ref endpoint);
+        }
+
+        private bool ItContains(string hostname)
+        {
+            var itContains = nameIp.FirstOrDefault(n => n.Key == hostname).Value;
+            if (itContains != null)
+            {
+                byte[] answerHeader = new Answer().GetBytesHeader();
+                answerBytes = answerHeader.Concat(itContains).ToArray();
+                return true;
+            }
+            return false;
         }
 
         public void Send(byte[] message)
         {
-            _socket.Send(message, message.Length,groupEP);                      
+            _socket.Send(message, message.Length, groupEP);
         }
 
-        public byte [] Receive()
+        public byte[] Receive()
         {
             return _socket.Receive(ref groupEP);
         }
 
-        {"www.yahoo.com" ,"98.137.149.56" },
-    {"www.hotmail.com", "65.55.72.135" },
-{"www.bing.com", "65.55.175.254" },
-{"www.digg.com","64.191.203.30"},
-{"www.theonion.com", "97.107.137.164"},
-{"www.hush.com", "65.39.178.43" },
-{"www.gamespot.com","216.239.113.172" },
-{"www.ign.com", "69.10.25.46" },
-{"www.cracked.com", "98.124.248.77" },
-{"www.sidereel.com", "144.198.29.112"},
-{"www.github.com", "207.97.227.239" }
-        
+        private Dictionary<string, byte[]> nameIp = new Dictionary<string, byte[]>()
+        {
+            {"www.asdsadadas.com", new byte[]{ 192, 168, 16, 1 } },
+            { "www.yahoo.com" , new byte[]{ 192,168,1,1 } },
+            {"www.google.com", new byte[]{ 192, 168, 16, 1 } },
+            {"www.bing.com" ,new byte[]{ 192,168,16,1 } },
+            {"www.digg.com", new byte[]{ 50,18,45,6 } },
+            {"www.theonion.com", new byte[]{151,101,2,166 } },
+            {"www.hush.com", new byte[] {65,39,178,43 } },
+        };
+
+        private void WriteAnswer()
+        {
+            var b = new Reponse(answerBytes);
+            b.Getip(b.answers);
+        }
     }
 }
